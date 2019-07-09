@@ -15,6 +15,30 @@ Write 3 different ways of safely unwrapping and printing the value of `userName`
 
 - Method three: Nil coalescing
 
+var userName: String?
+
+//Method 1
+
+if userName == nil {
+print("No name.")
+} else {
+print(userName!)
+}
+
+//Method 2
+
+if let name = userName {
+print(name)
+} else {
+print("No name.")
+}
+
+//Method 3
+
+var name = userName ?? "No name."
+
+print(name)
+
 
 ## Question 2
 
@@ -22,6 +46,11 @@ Given optional string `backgroundColor`, write code that safely unwraps and prin
 
 `var backgroundColor: String?`
 
+var backgroundColor: String?
+
+var color = backgroundColor ?? "blue"
+
+print(color)
 
 ## Question 3
 
@@ -30,6 +59,17 @@ Given an optional width and an optional height of a rectangle, write code that c
 ```swift
 var width: Double?
 var height: Double?
+
+
+var width: Double? = 5.0
+var height: Double? = 5.0
+
+if let h = height, let w = width {
+print("Area is",h * w)
+} else {
+print("One or both values aren't defined.")
+}
+
 ```
 
 
@@ -41,6 +81,19 @@ Given the following optional variables `name`, `age` and `height`. Write code so
 var name: String?
 var age: Int?
 var height: Double?
+
+var name: String? = "Joe"
+var age: Int? = 38
+var height: Double? = 5.7
+
+if let userName = name, let userAge = age, let userHeight = height {
+print("Name:",userName)
+print("Age:",userAge)
+print("Height:", userHeight)
+} else {
+print("One or more values aren't defined.")
+}
+
 ```
 
 
@@ -52,6 +105,19 @@ Given the variables `firstName`, `middleName` and `lastName`. Create a variable 
 var firstName: String = "Johnny"
 var middleName: String?
 var lastName: String = "Stone"
+
+var firstName: String = "Johnny"
+var middleName: String? 
+var lastName: String = "Stone"
+
+if let middle = middleName {
+let fullName = "\(firstName) " + "\(middle) " + "\(lastName)"
+print(fullName)
+} else {
+let fullName = "\(firstName) " + "\(lastName)"
+print(fullName)
+}
+
 ```
 
 
@@ -61,6 +127,15 @@ Write code that adds 15 to `myIntString`, then prints the sum. Use the `Int()` c
 
 `let myIntString = "35"`
 
+let myIntString = "35"
+var string: String? = myIntString
+
+
+if let unwrappedString = string {
+if let unwrappedInt = Int(unwrappedString) {
+print(unwrappedInt + 15)
+}
+}
 
 ## Question 7
 
@@ -72,6 +147,11 @@ var scores: (Int?, Int?, Int?)?
 var testCaseOne = (4, nil, 7)
 var testCaseTwo = (nil, nil, 9)
 var testCaseThree = (5, 10, 24)
+
+
+
+
+
 ```
 
 
@@ -84,6 +164,18 @@ var tuple: (Int, Int)?
 if Bool.random() {
  tuple = (5, 3)
 }
+
+var tuple: (Int, Int)?
+if Bool.random() {
+tuple = (5, 3)
+}
+
+if let tupleValue = tuple {
+print(tuple!)
+} else {
+print("nil")
+}
+
 ```
 
 
@@ -96,6 +188,19 @@ let myInt: Int?
 if Bool.random() {
  myInt = 5
 }
+
+
+var myInt: Int?
+if Bool.random() {
+myInt = 5
+}
+
+if let int = myInt {
+print(int * 2)
+} else {
+print("Error: Undefined.")
+}
+
 ```
 
 
@@ -110,6 +215,20 @@ let doubleTwo: Double = 5
 if Bool.random() {
  myDouble = 12
 }
+
+var myDouble: Double?
+let doubleTwo: Double = 5
+
+if Bool.random() {
+myDouble = 12
+}
+
+if let doubleOne = myDouble {
+print(doubleOne * doubleTwo)
+} else {
+print("Error: Undefined")
+}
+
 ```
 
 
@@ -123,6 +242,11 @@ var isTheGreatest: Bool?
 if Bool.random() {
  isTheGreatest = true
 }
+
+var isItReallyTheGreatest = isTheGreatest ?? false
+
+print(isItReallyTheGreatest)
+
 ```
 
 
@@ -140,6 +264,15 @@ if Bool.random() {
  myTuple.1 = 9
  myTuple.3 = 10
 }
+
+if let tuple0 = myTuple.0, let tuple2 = myTuple.2 {
+print(tuple0 + tuple2)
+} else {
+if let tuple1 = myTuple.1, let tuple3 = myTuple.3 {
+print(tuple1 + tuple3)
+}
+}
+
 ```
 
 
@@ -194,6 +327,34 @@ let pokemon: String?
 var evolutionaryStone: String?
 pokemon = starterPokemon()
 evolutionaryStone = eStone()
+
+
+
+
+if let check = pokemon {
+if let check2 = evolutionaryStone {
+if check == "Pikachu" && check2 == "Electric" {
+print("Pikachu is evolving!")
+} else if check == "Pikachu" && check2 != "Electric" {
+print("Pikachu can't evolve.")
+}
+if check == "Bulbasaur" && check2 == "Grass" {
+print("Bulbasaur is evolving!")
+} else if check == "Bulbasaur" && check2 != "Grass" {
+print("Bulbasaur can't evolve.")
+}
+if check == "Squirtle" && check2 == "Water" {
+print("Squirtle is evolving!")
+} else if check == "Squirtle" && check2 != "Water" {
+print("Squirtle can't evolve.")
+}
+if check == "Charmander" && check2 == "Fire" {
+print("Charmander is evolving!")
+} else if check == "Charmander" && check2 != "Fire" {
+print("Charmander can't evolve.")
+}
+}
+}
 ```
 
 
@@ -207,6 +368,21 @@ var numberOfPeople: Int?
 if Bool.random() {
  numberOfPeople = 108
 }
+
+var numberOfPeople: Int?
+
+if Bool.random() {
+numberOfPeople = 108
+}
+
+if let people = numberOfPeople {
+if people % 2 == 0 {
+print(people)
+}
+} else {
+print("No people.")
+}
+
 ```
 
 
@@ -220,6 +396,19 @@ var someNumbers: [Int?] = []
 for i in 0..<20 {
     someNumbers.append(Bool.random() ? i : nil)
 }
+
+var product = 1
+
+
+for i in someNumbers {
+if i != nil {
+product *= i!
+} else {
+continue
+}
+}
+
+print(product)
 ```
 
 
@@ -231,6 +420,19 @@ Given the array `poorlyFormattedCityNames`, create a new array with the city nam
 let poorlyFormattedCityNames: [String?] = ["new york", "BOSTON", nil, "chicago", nil, "los angeles", nil, "Dallas",]
 
 Output: ["New York", "Boston", "Chicago", "Los Angeles", "Dallas"]
+
+
+var properCityNames: [String] = []
+
+
+for i in poorlyFormattedCityNames {
+if i == nil {
+continue
+}
+properCityNames += [i!.capitalized]
+}
+
+print(properCityNames)
 ```
 
 
@@ -244,6 +446,22 @@ var aBunchOfNumbers: [Int?] = []
 for _ in 0..<20 {
  aBunchOfNumbers.append(Bool.random() ? Int(arc4random_uniform(102)) : nil)
 }
+
+var aBunchOfEvenNumbers: [Int] = []
+
+for i in aBunchOfNumbers {
+if i == nil {
+continue
+}
+if i! % 2 == 0 {
+aBunchOfEvenNumbers += [i!]
+} else {
+continue
+}
+}
+
+print(aBunchOfEvenNumbers)
+
 ```
 
 
@@ -253,6 +471,9 @@ Given the following array of zip codes as strings, write code that turns them in
 
 `let zipCodeStrings = ["11377", "11101", "11373", "10014", "10003", "11223"]`
 
+var IntArray = zipCodeStrings.map { Int($0)! }
+
+print(IntArray)
 
 ## Question 19
 
@@ -267,6 +488,27 @@ Some students were asked some questions about their favorite foods and colors an
 `let studentInfo: [(String, String?, String?)] = [("Bill", "Burgers", "Blue"), ("Rita", nil, "Red"), ("Peter", "Pizza", "Purple"), ("Sarah", "Sandwiches", nil), ("Jeff", nil, nil), ("Lucy", "Leftovers", "Lilac"), ("Mike", "Meat", "Mauve"), ("Gemma", nil, "Green")]`
 
 
+var coolStudents: [(String, String, String)] = []
+
+for info in studentInfo {
+if info.1 == nil && info.2 == nil {
+print("\(info.0) does not have a favorite food or color.")
+continue
+}
+if info.1 == nil {
+print("\(info.0) does not have a favorite food.")
+continue
+}
+if info.2 == nil {
+print("\(info.0) does not have a favorite color.")
+}
+if info.1 != nil && info.2 != nil {
+coolStudents.append((info.0, info.1!, info.2!))
+}
+}
+
+print(coolStudents)
+
 ## Question 20
 
 Given an optional array of optional tuples of optional UInt8s,
@@ -278,6 +520,37 @@ Given an optional array of optional tuples of optional UInt8s,
 `let possibleColors: [(r: UInt8?, g: UInt8?, b: UInt8?)?]? = [(128, 21, 7), (0, 0, 0), nil, (nil, 25, 82), (255, 255, 255), nil, (200, 100, nil), (120, nil, 23), (0, 255, 106), (nil, nil, nil), nil, (100, 100, 200)]`
 
 
+var r: UInt8 = 0
+var g: UInt8 = 0
+var b: UInt8 = 0
+var nilCount = 0
+
+for i in possibleColors! {
+if i == nil {
+nilCount += 1
+}
+if let tuple = i {
+if let element = tuple.r {
+r = element
+} else {
+nilCount += 1
+}
+if let element = tuple.g {
+g = element
+}else {
+nilCount += 1
+}
+if let element = tuple.b {
+b = element
+}else {
+nilCount += 1
+}
+print("R: " + "\(r) " + "G: " + "\(g) " + "B: " + "\(b) ")
+}
+}
+
+print(nilCount)
+
 ## Question 21
 
 Consider the following nested optional. It corresponds to a number inside a box inside a box inside a box.
@@ -287,6 +560,20 @@ Consider the following nested optional. It corresponds to a number inside a box 
 - Optionally bind and print number.
 
 `let number: Int??? = 10`
+
+let number: Int??? = 10
+
+var boxCutter = number!!!
+print(boxCutter)
+
+
+if let i = number {
+if let j = i {
+if let unwrapped = j {
+print(unwrapped)
+}
+}
+}
 
 
 ## Question 22
